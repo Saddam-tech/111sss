@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Validation from './Validation/Validation';
-import char from './Char/Char';
+import Char from './Char/Char';
 
 class App extends Component {
   state = {
@@ -26,7 +26,7 @@ class App extends Component {
   
   render() {
     const charList = this.state.userInput.split('').map(ch => {
-      return <char character={ch} />
+      return <Char character={ch} />
     }); 
 
 

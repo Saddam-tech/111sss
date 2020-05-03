@@ -11,7 +11,7 @@ const char = (props) => {
     
     return (
         <div style={style}>
-            props.character
+            {props.character}
         </div>
     );
 };
