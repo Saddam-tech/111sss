@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Validation from './Validation/Validation';
+import char from './Char/Char';
 
-function App() {
+class App extends Component {
+  state = {
+    userInput: '',
+
+    showInput: false
+  
+  }
+
+  togglePerson = () => {
+    const doesShow = this.state.showInput;
+    this.setState({showInput: !doesShow});
+  }
+
+
+
+  onChangeHandler = (event) => {
+    this.setState( {userInput: event.target.value})
+  }
+  
+  
+  
+  render() {
+    const charList = this.state.userInput.split('').map(ch => {
+      return <char character={ch} />
+    }); 
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+<button onClick={this.togglePerson}>Toggle</button>
+
+       
+       {this.state.showInput ?
+         <div>
+        <Validation
+        InputLength={this.state.userInput.length}
+       />
+        
+       
+  <input type="text" onChange={this.onChangeHandler} 
+  value={this.state.userInput} /> <p>{this.state.userInput}</p>
+  </div> : null
+
+  
+  }
+  {charList}
+        
     </div>
   );
+}
 }
 
 export default App;
